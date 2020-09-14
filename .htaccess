@@ -1,0 +1,6 @@
+AddDefaultCharset utf-8
+# перенаправляет обработку всех страниц на index.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php [L]
