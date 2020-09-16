@@ -7,8 +7,11 @@ $(document).ready(function () {
         event.preventDefault();
         const form = $(this);
         sendAjaxPostRequest(form, '#tree');
+        form.remove();
     });
-
+    if ($('.list-group').length) {
+        $('#createRoot').remove();
+    }
 
 });
 /*====================================
@@ -28,6 +31,7 @@ function sendAjaxPostRequest(element, id) {
             $(id).html(data);
         }
     );
+
 }
 
 /**
@@ -35,12 +39,13 @@ function sendAjaxPostRequest(element, id) {
  * @param element
  * @param parentId
  */
-function addRoot(element, parentId) {
+function addRoot(parentId) {
     $.post(
         '/add',
         {
             parent_id: parentId,
-            title: 'Root: '
+            title: 'Root',
+            is_child: 1
         },
         function (data) {
             $('#tree').html(data);
@@ -49,11 +54,11 @@ function addRoot(element, parentId) {
 }
 
 /**
- * Remove a root and its children with helping the technology ajax
+ * Removes a root and its children with helping the technology ajax
  * @param element
  * @param rootId
  */
-function removeRoot(element, rootId) {
+function removeRoot(rootId, parentId) {
     const modal = $('#deleteModal');
     setTimeout(function () {
         let span = modal.find('span.text-danger');
@@ -63,7 +68,7 @@ function removeRoot(element, rootId) {
             if (count <= 0) {
                 clearInterval(timerId);
                 count = 30;
-                removeAjax(element, rootId);
+                removeAjax(rootId, parentId);
                 modal.modal('hide');
             } else if (modal.attr('aria-hidden')) {
                 clearInterval(timerId);
@@ -73,21 +78,22 @@ function removeRoot(element, rootId) {
             span.html(count);
         }, 1000);
         $('#sendConfirmation').on('click', function () {
-            removeAjax(element, rootId);
+            removeAjax(rootId, parentId);
         });
     }, 500);
 }
 
 /**
  * Sends an ajax request for removing this roots
- * @param element
  * @param id
+ * @param parentId
  */
-function removeAjax(element, id) {
+function removeAjax(id, parentId) {
     $.post(
         '/delete',
         {
             id: id,
+            parent_id: parentId
         },
         function (data) {
             $('#tree').html(data);
@@ -95,6 +101,60 @@ function removeAjax(element, id) {
     );
 }
 
+/**
+ * Sends an ajax request to display child elements when on button clicked
+ * @param id
+ * @param parent_id
+ */
+function showChildren(id, parent_id) {
+    $.post(
+        '/show',
+        {
+            id: id,
+            parent_id: parent_id,
+        },
+        function (data) {
+            $('#tree').html(data);
+        }
+    );
+}
+/**
+ * Sends an ajax request to hide child elements when on button clicked
+ * @param id
+ * @param parent_id
+ */
+function hideChildren(id, parent_id) {
+    $.post(
+        '/hide',
+        {
+            id: id,
+            parent_id: parent_id
+        },
+        function (data) {
+            $('#tree').html(data);
+        }
+    );
+}
+
+/**
+ * Sends an ajax request to rename title of the node
+ * @param id
+ */
+function renameNode(id) {
+    $('#renameNode').on('click', function () {
+        let title = $("#titleNode").val();
+        $.post(
+            '/rename',
+            {
+                id: id,
+                title: title,
+            },
+            function (data) {
+                $('#tree').html(data);
+            }
+        );
+    });
+}
 
 
 

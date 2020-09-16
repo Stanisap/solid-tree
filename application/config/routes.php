@@ -30,4 +30,22 @@ return [
         'model' => 'tree',
     ],
 
+    'show' => [
+        'controller' => 'main',
+        'action' => 'show',
+        'model' => 'tree',
+    ],
+
+    'hide' => [
+        'controller' => 'main',
+        'action' => 'hide',
+        'model' => 'tree',
+    ],
+
+    'rename' => [
+        'controller' => 'main',
+        'action' => 'rename',
+        'model' => 'tree',
+    ],
+
 ];

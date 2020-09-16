@@ -4,6 +4,7 @@
 namespace application\controllers;
 
 use \application\core\Controller;
+use application\core\Debug;
 
 
 /**
@@ -40,7 +41,36 @@ class MainController extends Controller
     {
         $this->model->deleteBranch($_POST['id']);
         $data = $this->model->getData();
+        if (!isset($data[$_POST['parent_id']])) $this->model->notChildren($_POST['parent_id']);
         $this->view->requirePart('tree', $data);
     }
+
+    /**
+     * shows all children this node
+     */
+    public function showAction()
+    {
+        $data = $this->model->showChildren($_POST);
+        $this->view->requirePart('tree', $data);
+    }
+
+    /**
+     * hides all children this node
+     */
+    public function hideAction()
+    {
+        $data = $this->model->hideChildren($_POST);
+        $this->view->requirePart('tree', $data);
+    }
+
+    /**
+     * renames a title this node
+     */
+    public function renameAction()
+    {
+        $data = $this->model->renameNode($_POST);
+        $this->view->requirePart('tree', $data);
+    }
+
 
 }
