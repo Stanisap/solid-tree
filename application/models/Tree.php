@@ -4,9 +4,7 @@
 namespace application\models;
 
 
-use application\core\Debug;
 use application\core\Model;
-use Cassandra\Duration;
 
 /**
  * Class Tree

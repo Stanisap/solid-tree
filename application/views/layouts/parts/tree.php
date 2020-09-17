@@ -26,7 +26,7 @@ function buildTree($tree, $parent_id = 0)
                             <div class=\"row justify-content-start border border-dark rounded\" style='width: 200px'>
                                 <div class=\"col-auto\">
                                     <span class='$spanClass' $showChildren></span>
-                                    <div onclick='renameNode({$item['id']})' class='d-inline-block' data-toggle=\"modal\" data-target=\"#deleteModal\">{$item['title']}</div>
+                                    <div onclick='renameNode({$item['id']})' class='d-inline-block' data-toggle=\"modal\" data-target=\"#renameModal\" data-whatever='id:{$item['id']}'>{$item['title']}</div>
                                 </div>
                                 <div class=\"col-sm-1\">
                                     <button onclick='addRoot({$item['id']})' class=\"btn btn-success btn-sm\"><span class=\"oi oi-plus\"></span></button>

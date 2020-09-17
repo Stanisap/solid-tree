@@ -13,12 +13,12 @@
 <!-- --------------------
 Modal
 ------------------------- -->
-<!--Modal for delete node-->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!--Modal for rename title node-->
+<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete confirmation</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Rename this node</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -40,12 +40,12 @@ Modal
     </div>
 </div>
 
-<!--Modal for rename title node-->
-<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!--Modal for delete node-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rename</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Delete confirmation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

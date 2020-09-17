@@ -5,8 +5,6 @@
  */
 namespace application\lib;
 
-use application\core\Debug;
-use Cassandra\Duration;
 use PDO;
 use PDOStatement as Statement;
 

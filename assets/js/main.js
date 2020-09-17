@@ -7,13 +7,9 @@ $(document).ready(function () {
         event.preventDefault();
         const form = $(this);
         sendAjaxPostRequest(form, '#tree');
-        form.remove();
     });
-    if ($('.list-group').length) {
-        $('#createRoot').remove();
-    }
-
 });
+
 /*====================================
 * functions
 *===================================== */
@@ -118,6 +114,7 @@ function showChildren(id, parent_id) {
         }
     );
 }
+
 /**
  * Sends an ajax request to hide child elements when on button clicked
  * @param id
@@ -153,6 +150,7 @@ function renameNode(id) {
                 $('#tree').html(data);
             }
         );
+        $(this).off('click');
     });
 }
 
